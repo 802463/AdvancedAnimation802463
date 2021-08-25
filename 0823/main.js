@@ -13,50 +13,33 @@ function init(){
     // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
     context = canvas.getContext("2d");
 
-    for(i = 0; i <100; i++){
-      var ball = {};
-      //variables
-      balls.x = Math.random()*canvas.width;
-      balls.y = Math.random()*canvas.height;
-      balls.dx = Math.random(2);
-      balls.dy = Math.random(3);
-      //methods
-      balls.run = function(){
-        this.update();
-        this.checkEdges();
-        this.draw();
-      }
-
-      balls.update = function(){
-        this.x+=this.dx;
-        this.y+=this.dy;
-      }
-
-      balls.checkEdges = function(){
-        if(this.x > canvas.width || this.x < 0) this.dx = -this.dx;
-        if(this.y > canvas.height || this.y < 0)this.dy =-this.dy;
-      }
-
-      balls.draw = function(){
-        // create the circle path
-        context.beginPath();    // clear old path
-        // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/arc
-        context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-        context.strokeStyle = "black";  // color to fill
-        context.fillStyle = "blue";     // color to stroke
-        context.fill();     // render the fill
-        context.stroke();   // render the stroke
-      }
-    }
+    for (i = 0; i <50; i++) {
+      let radius = random(10,20);
+      let ball = new Ball(
+    random(0 + radius,canvas.width - radius),
+    random(0 + radius,canvas.height - radius),
+    random(-7,7),random(-7,7),
+    'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')', radius);
+    balls.push(ball);
   }
+      animate();
+}
+
+function random(min, max) {
+  const num = Math.floor(Math.random() * (max - min + 1)) + min;
+  return num;
+}
 
 
 // every animation cycle
 function animate() {
     // erase the HTMLCanvasElement
     context.clearRect(0,0,canvas.width,canvas.height);
+    context.fillStyle = 'rgba(0, 0, 0, 0.25)';
     for(i = 0; i<balls.length; i++){
-      balls[i].run();
+      balls[i].update();
+      balls[i].draw();
+      balls[i].checkEdges();
     }
     requestAnimationFrame(animate); // next cycle
 }
