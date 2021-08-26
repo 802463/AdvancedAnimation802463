@@ -6,8 +6,9 @@ function Ball(x, y, dx, dy, clr,radius) {
   this.dy = dy;
   this.clr = clr;
   this.radius = radius;
+}//++++++++++++++++++++++++++++++++ end ball constructor
 
-//methods
+//++++++++++++++++++++++++++++++++ methods
   Ball.prototype.update = function(){
     this.x+=this.dx;
     this.y+=this.dy;
@@ -25,4 +26,15 @@ function Ball(x, y, dx, dy, clr,radius) {
     context.fill();
   }
 
-}//++++++++++++++++++++++++++++++++ end ball constructor
+  Ball.prototype.checkOverlapping = function(){
+    for(var i = 0; i < balls.length; i++){
+            if(this !== balls[i]){
+              let xDiff = this.x - balls[i].x;
+              let yDiff = this.y - balls[i].y;
+              let dist = Math.sqrt(xDiff*xDiff + yDiff*yDiff);
+              if(dist < 2*this.radius){
+                return true;
+              }
+            }
+          }
+        }

@@ -1,5 +1,6 @@
 //Greta Hachigian-Kreutzer
-//0819
+//0823
+
 // wait for the page to finish loading with init as the callback
 window.addEventListener("load", init);
 
@@ -13,7 +14,7 @@ function init(){
     // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
     context = canvas.getContext("2d");
 
-    for (i = 0; i <50; i++) {
+    for (i = 0; i <100; i++) {
       let radius = random(10,20);
       let ball = new Ball(
     random(0 + radius,canvas.width - radius),
