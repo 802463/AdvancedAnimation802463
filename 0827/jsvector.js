@@ -10,7 +10,6 @@ function JSVector(x = 0,y = 0){
 // Set the magnitude of the vector,
 // retaining the angle (direction).
 JSVector.prototype.setMagnitude = function(magnitude){
-  this.normalize();
   this.x*=Math.sqrt(magnitude);
   this.y*=Math.sqrt(magnitude);
 }
