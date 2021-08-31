@@ -9,9 +9,9 @@ function JSVector(x = 0,y = 0){
 
 // Set the magnitude of the vector,
 // retaining the angle (direction).
-JSVector.prototype.setMagnitude = function(magnitude){
-  this.x*=Math.sqrt(magnitude);
-  this.y*=Math.sqrt(magnitude);
+JSVector.prototype.setMagnitude = function(mag){
+  this.x*=Math.sqrt(mag);
+  this.y*=Math.sqrt(mag);
 }
 
 // Get the magnitude of the vector using pythagorean theorem
