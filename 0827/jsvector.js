@@ -25,7 +25,6 @@ JSVector.prototype.getMagnitude = function(){
 JSVector.prototype.setDirection = function(angle){
    let tempX = cos(angle)*this.getMagnitude();
    let tempY = sin(angle)*this.getMagnitude();
-
    this.x = tempX;
    this.y = tempY;
 }
@@ -109,10 +108,10 @@ JSVector.prototype.angleBetween = function(v2){
 
 // Make a copy of this vector
 JSVector.prototype.copy = function(){
-  return new JSVector(this.x,this.y);
+
 }
 
 // Override inherited toString() to describe this instance
 JSVector.prototype.toString = function() {
-  return "x: "+this.x+" y: "+this.y;
+
 }
