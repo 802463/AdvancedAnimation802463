@@ -2,7 +2,7 @@
 // JSVector -- a Javascript 2D vector class
 
 // The class constructor
-function JSVector(x = 0,y = 0){
+function JSVector(x = 3,y = 4){
     this.x = x;
     this.y = y;
 }
@@ -11,12 +11,15 @@ function JSVector(x = 0,y = 0){
 // Set the magnitude of the vector,
 // retaining the angle (direction).
 JSVector.prototype.setMagnitude = function(mag){
-
+  let dir = this.getDirection();
+  this.x = mag * Math.cos(dir);
+  this.y = mag * Math.sin(dir);
+  return this;
 }
 
 // Get the magnitude of the vector using pythagorean theorem
 JSVector.prototype.getMagnitude = function(){
-
+  return Math.sqrt(this.x*this.x+this.y*this.y);
  }
 
 // Set the angle (direction) of the vector,
@@ -27,7 +30,8 @@ JSVector.prototype.setDirection = function(angle){
 
 // Get the direction (angle) of the vector
 JSVector.prototype.getDirection = function(){
-
+  let dir = Math.atan2(this.y,this.x);
+  return dir;
 }
 
 // Add another vector to this vector
@@ -96,5 +100,7 @@ JSVector.prototype.copy = function(){
 
 // Override inherited toString() to describe this instance
 JSVector.prototype.toString = function() {
-    return("x: " + this.x + ", y: " + this.y + "\n");
+  let mag = this.getMagnitude();
+  let dir = this.getDirection();
+    return("x: " + this.x + ", y: " + this.y + " mag: " + mag + " dir: " + dir);
 }
