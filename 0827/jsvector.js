@@ -23,10 +23,10 @@ JSVector.prototype.getMagnitude = function(){
 // Set the angle (direction) of the vector,
 // retaining the magnitude.
 JSVector.prototype.setDirection = function(angle){
-   let tempX = cos(angle)*this.getMagnitude();
-   let tempY = sin(angle)*this.getMagnitude();
-   this.x = tempX;
-   this.y = tempY;
+   let temp1 = cos(angle)*this.getMagnitude();
+   let temp2 = sin(angle)*this.getMagnitude();
+   this.x = temp1;
+   this.y = temp2;
 }
 
 // Get the direction (angle) of the vector
@@ -95,15 +95,15 @@ JSVector.prototype.distanceSquared = function(v2){
 // using the rotation matrix |  cos   -sin  |
 //                           |  sin   +cos  |
 JSVector.prototype.rotate = function(angle) {
-  let tempX = Math.cos(angle)*this.x-Math.sin(angle)*this.y;
-  let tempY = Math.sin(angle)*this.x+Math.cos(angle)*this.y;
-  this.x = tempX;
-  this.y = tempY;
+  let temp1 = Math.cos(angle)*this.x-Math.sin(angle)*this.y;
+  let temp2 = Math.sin(angle)*this.x+Math.cos(angle)*this.y;
+  this.x = temp1;
+  this.y = temp2;
 }
 
 // Get the angle between this vector and another one
 JSVector.prototype.angleBetween = function(v2){
-  return this.getDirection()-v2.getDirection();
+  return this.getDirection() - v2.getDirection();
 }
 
 // Make a copy of this vector
