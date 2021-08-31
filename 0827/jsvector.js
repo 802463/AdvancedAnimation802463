@@ -31,7 +31,7 @@ JSVector.prototype.setDirection = function(angle){
 
 // Get the direction (angle) of the vector
 JSVector.prototype.getDirection = function(){
-  return Math.atan(this.y/this.x);
+  return Math.atan(this.y,this.x);
 }
 
 // Add another vector to this vector
