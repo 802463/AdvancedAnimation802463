@@ -53,28 +53,31 @@ JSVector.prototype.sub = function(v2){
 
 // Class method to return a new vector that is the sum of two vectors
 JSVector.addGetNew = function(v1,v2){
-  v1.x += v2.x;
-  v1.y += v2.y;
-  return this;
+  return new JSVector(v1.x + v2.x, v1.y + v2.y);
 }
 
 // Class method to return a new vector that is the difference of two vectors
 JSVector.subGetNew = function(v1,v2){
-
+  return new JSVector(v1.x - v2.x, v1.y - v2.y);
 }
 
 // Multiply this vector by a scalar
 JSVector.prototype.multiply = function(scalar){
-
+  this.x *= scalar;
+  this.y *= scalar;
+  return this;
 }
 
 // Divide this vector by a scalar
 JSVector.prototype.divide = function(scalar){
-
+  this.x /= scalar;
+  this.y /= scalar;
+  return this;
 }
 
 // Normalize this vector so that it has a magnitude of 1
 JSVector.prototype.normalize = function(){
+  return this.divide(this.getMagnitude());
 }
 
 // Limit the magnitude of this vector
@@ -111,5 +114,5 @@ JSVector.prototype.copy = function(){
 JSVector.prototype.toString = function() {
   let mag = this.getMagnitude();
   let dir = this.getDirection();
-    return("x: " + this.x + ", y: " + this.y + " mag: " + mag + " dir: " + dir);
+    return("x: " + this.x + ", y: " + this.y + " mag: " + mag + " direction: " + dir);
 }
