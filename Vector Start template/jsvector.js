@@ -1,5 +1,6 @@
 
 // JSVector -- a Javascript 2D vector class
+//Greta Hachigian-Kreutzer
 
 // The class constructor
 function JSVector(x = 3,y = 4){
@@ -82,37 +83,45 @@ JSVector.prototype.normalize = function(){
 
 // Limit the magnitude of this vector
 JSVector.prototype.limit = function(lim){
-
+  if(this.getMagnitude() > lim){
+    this.x = lim.x;
+    this.y = lim.y;
+  }
+  return this;
 }
 
 // Get the distance between this vector and another one
 JSVector.prototype.distance = function(v2){
-
+  return Math.sqrt(Math.pow(this.x - v2.x, 2), Math.pow(this.y - v2.y, 2));
 }
 
 // Get square of the distance between this vector and another one
 JSVector.prototype.distanceSquared = function(v2){
-
+  return Math.pow(this.x - v2.x, 2) + Math.pow(this.y - v2.y, 2);
 }
 
 // Rotate this vector by some number of radians
 // using the rotation matrix |  cos   -sin  |
 //                           |  sin   +cos  |
 JSVector.prototype.rotate = function(angle) {
-
+  this.x = Math.cos(angle)*this.x - Math.sin(angle)*this.y;
+  this.y = Math.sin(angle)*this.y + Math.cos(angle)*this.y;
+  return this;
 }
 
 // Get the angle between this vector and another one
 JSVector.prototype.angleBetween = function(v2){
+  return this.getDirection() - v2.getDirection();
 }
 
 // Make a copy of this vector
 JSVector.prototype.copy = function(){
+  return new JSVector(this.x, this.y);
  }
 
 // Override inherited toString() to describe this instance
 JSVector.prototype.toString = function() {
   let mag = this.getMagnitude();
   let dir = this.getDirection();
-    return("x: " + this.x + ", y: " + this.y + " mag: " + mag + " direction: " + dir);
+  return("x: " + this.x + ", y: " + this.y + " mag: " + mag + " direction: " + dir);
 }
