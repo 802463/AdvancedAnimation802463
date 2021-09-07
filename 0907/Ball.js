@@ -1,8 +1,8 @@
-function Ball(loc, vel, clr,radius) {
+function Ball(loc, vel, acc, clr,radius) {
   //variables
   this.loc = loc;
   this.vel = vel;
-  //this.acc = new Vector(0,0.1);
+  this.acc = acc;
   this.clr = clr;
   this.radius = radius;
 }//++++++++++++++++++++++++++++++++ end ball constructor
