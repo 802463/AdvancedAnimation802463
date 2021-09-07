@@ -3,7 +3,7 @@
 //Greta Hachigian-Kreutzer
 
 // The class constructor
-function JSVector(x = 3,y = 4){
+function JSVector(x,y){
     this.x = x;
     this.y = y;
 }
