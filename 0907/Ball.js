@@ -11,7 +11,7 @@ function Ball(loc, vel, acc, clr,radius) {
   Ball.prototype.update = function(){
     this.loc.add(this.vel);
     //add acceleration
-    //this.vel.add(this.acc);
+    this.vel.add(this.acc);
   }
 
   Ball.prototype.checkEdges = function(){
