@@ -18,7 +18,7 @@ function init(){
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ start for loop
     for (i = 0; i <100; i++) {
       let radius = random(10,20);
-      let ball = new Ball(new JSVector(random(0,400),random(0,300)), new JSVector(random(1,2), random(1,2)),new JSVector(0,0.1),'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')', radius);
+      let ball = new Ball(new JSVector(random(0,400),random(0,300)), new JSVector(random(1,3), random(1,3)),new JSVector(0,0.1),'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')', radius);
     balls.push(ball);
   }//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++ end for loop
 
