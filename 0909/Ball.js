@@ -1,16 +1,35 @@
-function Ball(loc, vel, acc,clr,radius) {
+function Ball(x, y, dx, dy, rad, clr) {
   //variables
-  this.loc = loc;
-  this.vel = vel;
-  this.acc = acc;
+  this.loc = new JSVector(x,y);
+  this.vel = new JSVector(dx,dy);
   this.clr = clr;
-  this.radius = radius;
+  this.rad = rad;
+  this.pulser= new JSVector(0, 0);
 }//++++++++++++++++++++++++++++++++ end ball constructor
 
 //++++++++++++++++++++++++++++++++ methods
   Ball.prototype.update = function(){
-          this.vel.add(this.acc);
-          this.loc.add(this.vel);
+  if(this !== balls[0]){
+      let d = this.loc.distance(balls[0].loc);
+
+    if(d<200){//+++++++++++++++++++++ repell
+          this.pulser = JSVector.subGetNew(this.loc, balls[0].loc);
+          this.pulser.normalize();
+          this.pulser.multiply(0.1);
+    }
+
+    if(d>100){//+++++++++++++++++++++ attract
+        this.pulser = JSVector.subGetNew(balls[0].loc, this.loc);
+        this.pulser.normalize();
+        this.pulser.multiply(0.1);
+    }
+  }
+
+      if(this !== balls[0]){
+        this.vel.add(this.pulser);
+        this.vel.limit(3);
+        this.loc.add(this.vel);
+    }
   }
 
   Ball.prototype.checkEdges = function(){
@@ -24,25 +43,6 @@ function Ball(loc, vel, acc,clr,radius) {
     context.beginPath();
     context.fillStyle = this.clr;
     context.arc(this.loc.x, this.loc.y, this.radius, 0, 2 * Math.PI);
+    context.stroke();
     context.fill();
   }
-
-  Ball.prototype.attract1 = function(v2){
-  var d = this.loc.distance(v2.loc);
-  if(d<175){
-    var attractor = JSVector.subGetNew(v2.loc, this.loc);
-    attractor.normalize();
-    attractor.multiply(0.05);
-    this.acc.add(attractor);
-  }
-}
-
-Ball.prototype.attract2 = function(v2){
-  var d = this.loc.distance(v2.loc);
-  if(d<175){
-    var attractor = JSVector.subGetNew(this.loc, v2.loc);
-    attractor.normalize();
-    attractor.multiply(0.05);
-    this.acc.add(attractor);
-  }
-}

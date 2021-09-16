@@ -15,12 +15,21 @@ function init(){
     context = canvas.getContext("2d");
 
 
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ start for loop
-    for (i = 0; i <100; i++) {
-      let radius = random(10,20);
-      let ball = new Ball(new JSVector(random(0,400),random(0,300)), new JSVector(random(1,3), random(1,3)),'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')', radius);
-    balls.push(ball);
-  }//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++ end for loop
+    let numBalls = 100;
+       for(var i = 0; i < numBalls; i++){
+           var x, y, dx, dy, rad, clr, r, g, b;
+           x = this.canvas.width/2;
+           y = this.canvas.height/2;
+           dx = Math.random()*6-3;
+           dy = Math.random()*6-3;
+           rad = 10;
+           r = 0
+           g = 255;
+           b = 255;
+           clr = "rgba(" + r + ", "+ g + ","+ b +")"
+           let ball = new Ball(x, y, dx, dy, rad, clr);
+           balls.push(ball);
+       }
 
 
       animate();
@@ -41,8 +50,7 @@ function animate() {
       balls[i].update();
       balls[i].draw();
       balls[i].checkEdges();
-      balls[i].attract1();
-      balls[i].attract2();
     }
+
     requestAnimationFrame(animate); // next cycle
 }
