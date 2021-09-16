@@ -4,7 +4,7 @@ function Ball(x, y, dx, dy, rad, clr) {
   this.vel = new JSVector(dx,dy);
   this.clr = clr;
   this.rad = rad;
-  this.pulser= new JSVector(0, 0);
+  this.dylan= new JSVector(0, 0);
 }//++++++++++++++++++++++++++++++++ end ball constructor
 
 //++++++++++++++++++++++++++++++++ methods
@@ -13,20 +13,20 @@ function Ball(x, y, dx, dy, rad, clr) {
       let d = this.loc.distance(balls[0].loc);
 
     if(d<200){//+++++++++++++++++++++ repell
-          this.pulser = JSVector.subGetNew(this.loc, balls[0].loc);
-          this.pulser.normalize();
-          this.pulser.multiply(0.1);
+          this.dylan = JSVector.subGetNew(this.loc, balls[0].loc);
+          this.dylan.normalize();
+          this.dylan.multiply(0.1);
     }
 
     if(d>100){//+++++++++++++++++++++ attract
-        this.pulser = JSVector.subGetNew(balls[0].loc, this.loc);
-        this.pulser.normalize();
-        this.pulser.multiply(0.1);
+        this.dylan = JSVector.subGetNew(balls[0].loc, this.loc);
+        this.dylan.normalize();
+        this.dylan.multiply(0.1);
     }
   }
 
       if(this !== balls[0]){
-        this.vel.add(this.pulser);
+        this.vel.add(this.dylan);
         this.vel.limit(3);
         this.loc.add(this.vel);
     }
