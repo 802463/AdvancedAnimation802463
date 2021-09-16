@@ -1,5 +1,5 @@
 //Greta Hachigian-Kreutzer
-//0823
+//0909
 
 // wait for the page to finish loading with init as the callback
 window.addEventListener("load", init);
@@ -27,9 +27,10 @@ function init(){
            g = 255;
            b = 255;
            clr = "rgba(" + r + ", "+ g + ","+ b +")"
-           let ball = new Ball(x, y, dx, dy, rad, clr);
+           let ball = new Ball(x, y, dx, dy, rad, clr, context);
            balls.push(ball);
        }
+       balls[0].clr = "red";
 
 
       animate();
@@ -44,12 +45,14 @@ function random(min, max) {
 // every animation cycle
 function animate() {
     // erase the HTMLCanvasElement
-    context.clearRect(0,0,canvas.width,canvas.height);
+
     context.fillStyle = 'rgba(0, 0, 0, 0.25)';
+    context.fillRect(0,0,canvas.width,canvas.height);
+
     for(i = 0; i<balls.length; i++){
+      balls[i].checkEdges();
       balls[i].update();
       balls[i].draw();
-      balls[i].checkEdges();
     }
 
     requestAnimationFrame(animate); // next cycle

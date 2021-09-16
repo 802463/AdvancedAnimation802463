@@ -1,10 +1,11 @@
-function Ball(x, y, dx, dy, rad, clr) {
+function Ball(x, y, dx, dy, rad, clr, ctx) {
   //variables
   this.loc = new JSVector(x,y);
   this.vel = new JSVector(dx,dy);
   this.clr = clr;
   this.rad = rad;
   this.dylan= new JSVector(0, 0);
+  this.context = ctx;
 }//++++++++++++++++++++++++++++++++ end ball constructor
 
 //++++++++++++++++++++++++++++++++ methods
@@ -14,14 +15,12 @@ function Ball(x, y, dx, dy, rad, clr) {
 
     if(d<200){//+++++++++++++++++++++ repell
           this.dylan = JSVector.subGetNew(this.loc, balls[0].loc);
-          this.dylan.normalize();
-          this.dylan.multiply(0.1);
+          this.dylan.setMagnitude(0.1);
     }
 
     if(d>100){//+++++++++++++++++++++ attract
         this.dylan = JSVector.subGetNew(balls[0].loc, this.loc);
-        this.dylan.normalize();
-        this.dylan.multiply(0.1);
+        this.dylan.setMagnitude(0.1);
     }
   }
 
@@ -30,6 +29,8 @@ function Ball(x, y, dx, dy, rad, clr) {
         this.vel.limit(3);
         this.loc.add(this.vel);
     }
+
+    this.loc.add(this.vel);
   }
 
   Ball.prototype.checkEdges = function(){
@@ -40,9 +41,8 @@ function Ball(x, y, dx, dy, rad, clr) {
   }
 
   Ball.prototype.draw = function(){
-    context.beginPath();
-    context.fillStyle = this.clr;
-    context.arc(this.loc.x, this.loc.y, this.radius, 0, 2 * Math.PI);
-    context.stroke();
-    context.fill();
+    this.context.beginPath();
+    this.context.fillStyle = this.clr;
+    this.context.arc(this.loc.x, this.loc.y, this.rad, 0, 2 * Math.PI);
+    this.context.fill();
   }
