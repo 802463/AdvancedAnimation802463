@@ -23,9 +23,9 @@ function init(){
            dx = Math.random()*6-3;
            dy = Math.random()*6-3;
            rad = 10;
-           r = 0
-           g = 255;
-           b = 255;
+           r = 10;
+           g = 230;
+           b = 150;
            clr = "rgba(" + r + ", "+ g + ","+ b +")"
            let ball = new Ball(x, y, dx, dy, rad, clr, context);
            balls.push(ball);
