@@ -14,11 +14,11 @@ function Boid(x, y, dx, dy, rad, clr, ctx) {
     this.loc.add(this.vel);
 
     let d = this.loc.distance(planets[0].loc);
-    if(d>400){//+++++++++++++++++++++ attract
+    //+++++++++++++++++++++ attract
         this.acc = JSVector.subGetNew(planets[0].loc, this.loc);
         this.acc.setMagnitude(0.1);
         this.acc.limit(0.1);
-    }
+        
     this.acc.limit(3);
     this.vel.limit(3.8);
   }
