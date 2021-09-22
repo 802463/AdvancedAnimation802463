@@ -12,12 +12,25 @@ function Boid(x, y, dx, dy, rad, clr, ctx) {
   Boid.prototype.update = function(){
     this.vel.add(this.acc);
     this.loc.add(this.vel);
+
+    let d = this.loc.distance(planets[0].loc);
+    if(d>400){//+++++++++++++++++++++ attract
+        this.acc = JSVector.subGetNew(planets[0].loc, this.loc);
+        this.acc.setMagnitude(0.1);
+        this.acc.limit(0.1);
+    }
+    this.acc.limit(3);
+    this.vel.limit(3.8);
   }
 
   Boid.prototype.checkEdges = function(){
-    if(this.loc.x > canvas.width || this.loc.x < 0) this.vel.x = -this.vel.x;
-    if(this.loc.y > canvas.height || this.loc.y < 0) this.vel.y =-this.vel.y;
+    if(this.loc.x > canvas.width) this.loc.x = 0;
+    if(this.loc.y > canvas.height) this.loc.y = 0;
+    if(this.loc.x < 0) this.loc.x = canvas.width;
+    if(this.loc.y < 0) this.loc.y = canvas.height;
   }
+
+
 
   Boid.prototype.draw = function(){
     this.context.beginPath();

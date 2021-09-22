@@ -21,8 +21,8 @@ function init(){
            var x, y, dx, dy, rad, clr, r, g, b;
            x = random(0,canvas.width);
            y = random(0,canvas.height);
-           dx = 4;
-           dy = 4;
+           dx = 2.8;
+           dy = 2.8;
            rad = 10;
            r = 220;
            g = 20;
