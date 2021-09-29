@@ -1,5 +1,5 @@
 //Greta Hachigian-Kreutzer
-//0909
+//0927
 
 // wait for the page to finish loading with init as the callback
 window.addEventListener("load", init);
@@ -27,7 +27,7 @@ function init(){
       g = Math.random()*155;
       b = Math.random()*155;
       clr = "rgba(" + r + ", "+ g + ","+ b +")"
-      numOrbiters = Math.floor(Math.random() * 10) + 3;
+      numOrbiters = Math.floor(Math.random() * 8) + 3;
       this.movers.push(new Mover(x, y, dx, dy, rad, clr, numOrbiters, context));
     }
 
