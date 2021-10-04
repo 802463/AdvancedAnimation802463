@@ -16,10 +16,11 @@ function init(){
     // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
     context = canvas.getContext("2d");
 
+    //how to make movers look nice and be movers
     let numMovers = 10;
     for(var i = 0; i<numMovers;i++){
       var x, y, dx, dy, rad, clr, r, g, b, numOrbiters;
-      rad = 7;
+      rad = 20;
       x = random(0,canvas.width);
       y = random(0,canvas.height);
       dx = Math.random()*2-1;
@@ -47,11 +48,11 @@ function random(min, max) {
 function animate() {
     // erase the HTMLCanvasElement
     context.fillStyle = 'rgba(0, 0, 0, 0.25)';
-    context.clearRect(0,0,canvas.width,canvas.height);
+    context.fillRect(0,0,canvas.width,canvas.height);
 
+    //yay movers on screen now
        for(let i = 0; i < this.movers.length; i++){
          this.movers[i].run();
        }
-
     requestAnimationFrame(animate); // next cycle
 }

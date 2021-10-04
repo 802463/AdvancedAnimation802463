@@ -12,6 +12,7 @@ function Orbiter(mover, oRad, oRad, angle, angleVel, clr, ctx) {
 
 //++++++++++++++++++++++++++++++++ methods
   Orbiter.prototype.update = function(){
+    //makes the orbiters orbit yk?
     this.rotator.rotate(this.angleVel);
     this.loc = JSVector.addGetNew(this.mover.loc, this.rotator);
     }
