@@ -8,8 +8,7 @@ function Mover(x, y, dx, dy, rad, clr, numOrbiters, ctx) {
   this.context = ctx;
   this.orbiterAngle = Math.random()*Math.PI;
   this.orbiters = [];
-  this.movers = [];
-
+  this.viral = false;
 
   for(let i = 0; i<numOrbiters; i++){
      let a = i*(Math.PI*2)/numOrbiters + this.orbiterAngle;
@@ -26,7 +25,7 @@ function Mover(x, y, dx, dy, rad, clr, numOrbiters, ctx) {
     this.update();
     this.checkEdges();
     this.draw();
-    this.checkOverlapping();
+    // this.checkOverlapping();
 
     //yay orbiters are on the screen now
     for(let i = 0; i < this.orbiters.length; i++){
@@ -41,8 +40,33 @@ function Mover(x, y, dx, dy, rad, clr, numOrbiters, ctx) {
     this.vel.add(this.acc);
     this.loc.add(this.vel);
     //speed too quick- not anymore :))
-    this.vel.limit(3);
+    this.vel.limit(2.5);
+    movers[0].viral = true;
+    movers[0].vel.limit(3);
+
+
+    for(var i = 0; i < movers.length; i++){
+
+      if(this.viral){
+        this.clr = "red";
+        let d = this.loc.distance(movers[i].loc);
+
+        if(d<100){//+++++++++++++++++++++ repell
+            this.acc = JSVector.subGetNew(this.loc, movers[i].loc);
+            this.acc.setMagnitude(0.1);
+      }
+
+      if(d>100){//+++++++++++++++++++++ attract
+          this.acc = JSVector.subGetNew(movers[i].loc, this.loc);
+          this.acc.setMagnitude(0.1);
+      }
+
+      if(d<50){//+++++++++++++++++++++ become infected
+            this.viral = true;
+      }
+    }
   }
+}
 
   Mover.prototype.checkEdges = function(){
     //if mover reaches canvas edge appears on opposite side
@@ -59,15 +83,3 @@ function Mover(x, y, dx, dy, rad, clr, numOrbiters, ctx) {
     this.context.arc(this.loc.x, this.loc.y, this.rad, 0, 2 * Math.PI, false);
     this.context.fill();
   }
-
-
-  //if movers overlap change color to red + more orbiters/maybe new mover?
-  Mover.prototype.checkOverlapping = function(){
-      for(var i = 0; i < movers.length; i++){
-        for(var j = 0; j < movers.length; j++){
-            if(movers[i].loc.distance(movers[j].loc) < 10){
-              movers[i].clr = "red";
-            }
-        }
-      }
-    }
