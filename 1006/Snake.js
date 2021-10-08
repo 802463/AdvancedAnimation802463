@@ -4,7 +4,7 @@ function Snake(x, y, dx, dy, clr, numSegments){
   this.segments = [];
   this.numSegments = numSegments;
 
-  //create segments w/ distance from eachother
+  //create segments w/ pos when spawning
   let d = 20;
   for(let i = 0;i < this.numSegments;i++){
     this.segments[i] = new JSVector(x - d, y - d);
