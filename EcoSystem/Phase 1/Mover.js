@@ -51,7 +51,7 @@ function Mover(x, y, dx, dy, rad, clr, numOrbiters, ctx) {
         this.clr = "red";
         let d = this.loc.distance(movers[i].loc);
 
-        if(d<100){//+++++++++++++++++++++ repell
+        if(d<70){//+++++++++++++++++++++ repell
             this.acc = JSVector.subGetNew(this.loc, movers[i].loc);
             this.acc.setMagnitude(0.1);
       }
