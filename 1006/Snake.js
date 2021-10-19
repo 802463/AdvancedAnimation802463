@@ -5,10 +5,10 @@ function Snake(x, y, dx, dy, clr, numSegments){
   this.numSegments = numSegments;
 
   //create segments w/ pos when spawning
-  let d = 20;
+  let d = 25;
   for(let i = 0;i < this.numSegments;i++){
     this.segments[i] = new JSVector(x - d, y - d);
-    d = d - 20;
+    d = d - 25;
   }
 }
 
@@ -28,8 +28,8 @@ Snake.prototype.render = function(){
       ctx.fillStyle = this.clr;
       ctx.fill();
     }
-
   }
+
 
 Snake.prototype.update = function(){
   //make segments follow eachother

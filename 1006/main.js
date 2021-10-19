@@ -22,8 +22,8 @@ function init(){
       var x, y, dx, dy, rad, clr, r, g, b, numSegments;
       x = Math.random()*canvas.width;
       y = Math.random()*canvas.height;
-      dx = Math.random()*2-1;
-      dy = Math.random()*2-1;
+      dx = Math.random()*3-1;
+      dy = Math.random()*3-1;
       r = Math.random()*255;
       g = Math.random()*255;
       b = Math.random()*255;
@@ -36,7 +36,7 @@ function init(){
 }
 
 
-
+//useless
 function random(min, max) {
   const num = Math.floor(Math.random() * (max - min + 1)) + min;
   return num;
