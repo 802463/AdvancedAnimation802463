@@ -9,7 +9,7 @@ ParticleSys.prototype.run = function(){
 }
 
 ParticleSys.prototype.addParticle = function(){
-  let r = Math.random()*100;
+  let r = Math.random()*80;
   let g = Math.random()*200;
   let b = Math.random()*255;
   let clr = "rgba(" + r + ", "+ g + ","+ b +")"

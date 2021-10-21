@@ -8,6 +8,7 @@ window.addEventListener("load", init);
 // global variables
 var canvas, ctx;
 var particles = [];
+var psystem = [];
 
 
 function init(){
@@ -15,11 +16,6 @@ function init(){
     canvas = document.getElementById("cnv");
     // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
     ctx = canvas.getContext("2d");
-
-    //how to make particles look nice and be particles
-    let x = canvas.width/2;
-    let y = canvas.height/4;
-    this.psystem = new ParticleSys(x, y);
 
       animate();
 }
@@ -32,6 +28,16 @@ function animate() {
     ctx.fillRect(0,0,canvas.width,canvas.height);
 
     //yay particles on screen now
-      psystem.run();
+  for(var i = 0;i<psystem.length;i++){
+   psystem[i].run();
+ }
+ 
     requestAnimationFrame(animate); // next cycle
 }
+
+window.addEventListener('click', function(e){
+    psystem.x = e.clientX;
+    psystem.y = e.clientY;
+    this.psystem.push(new ParticleSys(psystem.x, psystem.y));
+    //console.log(clicking);
+});

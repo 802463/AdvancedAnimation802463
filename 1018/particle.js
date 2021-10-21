@@ -15,11 +15,28 @@ Particle.prototype.run = function(){
 Particle.prototype.render = function(){
   ctx.strokeStyle = this.clr;
   ctx.fillStyle = this.clr;
+
+
   ctx.beginPath();
-  ctx.arc(this.loc.x,this.loc.y, this.rad, Math.PI*2, 0, false);
-  ctx.stroke();
-  ctx.fill();
+    ctx.save();
+     ctx.arc(this.loc.x, this.loc.y, 30, 0, Math.PI * 2, true); // Outer circle
+     ctx.moveTo(this.loc.x+15, this.loc.y);
+     ctx.arc(this.loc.x, this.loc.y, 15, 0, Math.PI, false);  // Mouth (clockwise)
+     ctx.moveTo(this.loc.x-10, this.loc.y-10);
+     ctx.arc(this.loc.x-15, this.loc.y-10, 5, 0, Math.PI * 2, true);  // Left eye
+     ctx.moveTo(this.loc.x+20, this.loc.y-10);
+     ctx.arc(this.loc.x+15, this.loc.y-10, 5, 0, Math.PI * 2, true);  // Right eye
+
+
   ctx.closePath();
+
+  ctx.closePath();
+  ctx.fillStyle = this.clr;
+  ctx.stroke();
+  ctx.restore();
+
+
+
 }
 
 Particle.prototype.update = function(){
