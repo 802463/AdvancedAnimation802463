@@ -67,9 +67,9 @@ Bird.prototype.flock = function(birds){
   let ali = this.align(birds);
   let coh = this.cohesion(birds);
   //add sliders to manipulate below
-  let sepMult = 0.1;
+  let sepMult = 0.9;
   let aliMult = 0.20;
-  let cohMult = 0.08;
+  let cohMult = 0.8;
   //calc 3 forces
   sep.multiply(sepMult);
   ali.multiply(aliMult);
