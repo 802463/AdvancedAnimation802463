@@ -16,8 +16,14 @@ function init(){
     canvas = document.getElementById("cnv");
     // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
     ctx = canvas.getContext("2d");
+    cnv.addEventListener('click', function(e){
+        //psystem.x = e.clientX;
+        //psystem.y = e.clientY;
+        psystem.push(new ParticleSys(e.clientX, e.clientY));
+        //console.log(clicking);
+    });
 
-      animate();
+    animate();
 }
 
 
@@ -31,13 +37,6 @@ function animate() {
   for(var i = 0;i<psystem.length;i++){
    psystem[i].run();
  }
- 
+
     requestAnimationFrame(animate); // next cycle
 }
-
-window.addEventListener('click', function(e){
-    psystem.x = e.clientX;
-    psystem.y = e.clientY;
-    this.psystem.push(new ParticleSys(psystem.x, psystem.y));
-    //console.log(clicking);
-});
