@@ -15,9 +15,8 @@ function World(){
         width: 4000,
         height: 3000
     }
-    // canvas2 is scaled according to the ratio of its
-    // height and width to the height and width of the world
-    // so that the entire world fits within canvas2
+    
+    //scale vs world
     this.scaleX = this.canvas2.width/this.world.width;
     this.scaleY = this.canvas2.height/this.world.height;
 
