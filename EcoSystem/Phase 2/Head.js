@@ -16,10 +16,10 @@ Head.prototype.update = function(){
 }
 
 Head.prototype.checkEdges = function(){
-    if (this.loc.x > world.width || this.loc.x < 0){
-        this.vel.x = -this.vel.x;
+    if (this.loc.x >= world.dimensions.x/2|| this.loc.x <= -world.dimensions.x/2){
+        this.vel.x*=-1;
     }
-    if (this.loc.y > world.height || this.loc.y < 0){
-        this.vel.y = -this.vel.y;
+    if (this.loc.y >= world.dimensions.y/2 || this.loc.y < -world.dimensions.y/2){
+        this.vel.y*=-1;
     }
   }
