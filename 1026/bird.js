@@ -35,7 +35,6 @@ Bird.prototype.render = function(){
   ctx.stroke();
   ctx.fill();
   ctx.restore();
-
 }
 
 Bird.prototype.update = function(){
